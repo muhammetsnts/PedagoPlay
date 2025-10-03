@@ -191,9 +191,6 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
         default=0.7,
         help="Sampling temperature",
     )
-
-
-
     
     parser.add_argument(
         "--top-p",
