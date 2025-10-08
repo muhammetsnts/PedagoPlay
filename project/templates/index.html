@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 PedagoPlay - Fun Activities for Kids!</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">🎨 PedagoPlay</h1>
+            <p class="subtitle">Discover amazing activities for your little ones!</p>
+        </header>
+
+        <!-- Main Form -->
+        <main class="main-content">
+            <div class="form-container">
+                <form id="activityForm" class="activity-form">
+                    <div class="form-group">
+                        <label for="numChildren" class="form-label">👶 How many children?</label>
+                        <input type="number" id="numChildren" name="numChildren" min="1" max="20" value="1" required class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ages" class="form-label">🎂 Ages of children (separate with commas)</label>
+                        <input type="text" id="ages" name="ages" placeholder="e.g., 4,5,6" value="4" required class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weather" class="form-label">🌤️ What's the weather like?</label>
+                        <select id="weather" name="weather" required class="form-select">
+                            <option value="sunny">☀️ Sunny</option>
+                            <option value="rainy">🌧️ Rainy</option>
+                            <option value="snowy">❄️ Snowy</option>
+                            <option value="cloudy">☁️ Cloudy</option>
+                            <option value="windy">💨 Windy</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location" class="form-label">📍 Where are you?</label>
+                        <input type="text" id="location" name="location" placeholder="e.g., Yverdon-les-Bains" value="Yverdon-les-Bains" required class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="specialCases" class="form-label">✨ Any special considerations?</label>
+                        <textarea id="specialCases" name="specialCases" placeholder="e.g., allergies, disabilities, space limitations..." class="form-textarea">No special case.</textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">🎯 Find Activities!</span>
+                        <span class="btn-loading" style="display: none;">⏳ Thinking...</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="results-container" style="display: none;">
+                <h2 class="results-title">🎉 Here are your activities!</h2>
+                <div id="activitiesContent" class="activities-content"></div>
+                <button onclick="clearResults()" class="clear-btn">🔄 Try Again</button>
+            </div>
+
+            <!-- Error Section -->
+            <div id="error" class="error-container" style="display: none;">
+                <h3 class="error-title">😔 Oops! Something went wrong</h3>
+                <p id="errorMessage" class="error-message"></p>
+                <button onclick="clearError()" class="clear-btn">🔄 Try Again</button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with 💖 for happy children and parents</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
