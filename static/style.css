@@ -6,6 +6,15 @@ body {
     font-family: "Fredoka", cursive, sans-serif;
 }
 
+h2 {
+    color: #fd79a8;
+    text-align: center;
+}
+
+h3 {
+    color: #7d6eee;
+}
+
 .container{
     max-width: 800px;
     margin: 0 auto;
@@ -144,11 +153,8 @@ body {
     padding: 40px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
-    text-align: center;
-    /* text-align: center;
-    bunu butonu ortaya almak için yaptım. 
-    results ları eklediğimizde sorun olursa ayarlarız
-    */
+    display: flex;
+    flex-direction: column;
 }
 
 .results-title {
@@ -186,6 +192,8 @@ body {
 }
 
 .clear-btn {
+    display: block;
+    margin: 0 auto;
     font-family: "Fredoka", cursive;
     font-size: 1rem;
     background: linear-gradient(135deg, rgb(134, 191, 248), rgb(17, 131, 245));

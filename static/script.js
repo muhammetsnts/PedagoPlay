@@ -52,6 +52,7 @@ form.addEventListener("submit", async (e) => {
 
         if (data.success) {
             showResults(data.activities);
+            // console.log(data.activities)
         }
         else {
             throw new Error(data.error || "Failed to get activities");
@@ -144,7 +145,49 @@ function showError(message) {
 }
 
 function showResults(activities) {
-    resultsContainer.display.style = "block";
-    resultsContainer.innerHTML = activities;
-    errorContainer.scrollIntoView({behavior:"smooth"});
+    resultsContainer.style.display = "block";
+    activitiesContent.innerHTML = activities;
+    resultsContainer.scrollIntoView({behavior:"smooth"});
+    submitBtn.style.display = "none";
 }
+
+// clear results
+function clearResults () {
+    hideResults();
+    form.reset();
+    submitBtn.style.display = "inline";
+
+    // set default values
+    document.getElementById("numChildren").value = 1;
+    document.getElementById("ages").value = "4";
+    document.getElementById("weather").value = "sunny";
+    document.getElementById("location").value = "Yverdon-les-Bains";
+    document.getElementById("specialCases").value = "No special case.";
+}
+
+// Clear error
+function clearError() {
+    hideError();
+}
+
+function playClickSound() {
+    // Simple click sound for submit button
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+    
+    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.1);
+}
+
+// Add click sound to submit button
+submitBtn.addEventListener('click', playClickSound);
