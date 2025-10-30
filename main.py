@@ -4,6 +4,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional
+import random
 import sys
 import os
 
@@ -41,7 +42,7 @@ class ActivityResponse(BaseModel):
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
-    with open("templates/index.html", "r", encoding="utf-8") as f:
+    with open("index.html", "r", encoding="utf-8") as f:
         return HTMLResponse(content=f.read())
 
 @app.post("/api/activities", response_model=ActivityResponse)
@@ -134,8 +135,9 @@ def generate_simple_activities(num_children: int, ages: List[int], weather: str,
     if "disability" in special_cases.lower() or "wheelchair" in special_cases.lower():
         activities.append("♿ **Accessible Activities**\nAll suggested activities are designed to be inclusive and accessible for all children.\n\n")
     
-    # Select 3-4 activities
-    selected_activities = activities[:4]
+    # Select 3-4 activities at random to add variation across requests
+    max_selection = min(4, len(activities))
+    selected_activities = random.sample(activities, k=max_selection) if max_selection > 0 else []
     
     result = f"🎉 **Fun Activities for {num_children} child{'ren' if num_children > 1 else ''} (ages {', '.join(map(str, ages))})**\n\n"
     result += f"📍 **Location:** {location}\n"
@@ -154,4 +156,5 @@ def generate_simple_activities(num_children: int, ages: List[int], weather: str,
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8888)
+    

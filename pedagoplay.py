@@ -1,13 +1,16 @@
+from cgitb import html
 import json
 import os
 import sys
 import time
 from typing import Iterable, List, Dict, Optional
 import requests
+import markdown
 
 
 OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
-DEFAULT_MODEL = "openai/gpt-3.5-turbo"
+# Prefer a free model to avoid credit errors by default. You can change this.
+DEFAULT_MODEL = "meta-llama/llama-3.3-8b-instruct:free"
 
 class OpenRouterError(Exception):
     pass
@@ -27,6 +30,7 @@ def build_messages(
 
 # Guidelines:
 - Adapt to the age group(s) of the children.
+- Suggest  3 **indoor** and 3 **outdoor** activities.
 - Outdoor activities must be realistic and possible near the provided location, given the weather.
 - Check the provided location and sugggest outdoor activities according to the natural specifics of it. 
 - Respect special cases (e.g., allergy, disability, space limitation).
@@ -151,7 +155,10 @@ def send_request(headers: dict, payload: dict, request_timeout: int) -> str:
     _raise_for_bad_status(response)
     data = response.json()
     try:
-        return data["choices"][0]["message"]["content"]
+        result = data["choices"][0]["message"]["content"]
+        return _convert_html(result)
+        #return data["choices"][0]["message"]["content"]
+
     except (KeyError, IndexError) as e:
         
         # REMOVE THIS
@@ -168,3 +175,15 @@ def _raise_for_bad_status(response: requests.Response) -> None:
         except Exception:
             details = response.text
         raise OpenRouterError(f"HTTP {response.status_code}: {details}") from e
+
+def _convert_html(result: str) -> html:
+
+    try:
+        file_html = markdown.markdown(result)
+        file_html = file_html.replace("<li>", "")
+        file_html = file_html.replace("</li>", "")
+        file_html = file_html.replace("<ol>", "")
+        file_html = file_html.replace("</ol>", "")
+        return file_html
+    except Exception as e:
+        raise OpenRouterError(f"AI response convert error... {e}")
