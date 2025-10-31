@@ -2,8 +2,7 @@
 
 A children-friendly web application that suggests fun and educational activities for kids based on their age, weather, location, and special considerations.
 
-https://github.com/user-attachments/assets/1aa9d75c-62c0-4922-8a0a-d85a35701eac
-
+![pedagoplay](https://github.com/user-attachments/assets/fe166faf-1ad6-4939-92f3-10a6c809d075)
 
 
 
