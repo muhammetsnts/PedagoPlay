@@ -2,6 +2,10 @@
 
 A children-friendly web application that suggests fun and educational activities for kids based on their age, weather, location, and special considerations.
 
+<img width="1238" height="802" alt="image" src="https://github.com/user-attachments/assets/0fd2b524-10c9-46c0-9f41-05f466789028" />
+<img width="1131" height="801" alt="image" src="https://github.com/user-attachments/assets/3158a623-42bb-4d53-b323-e678d5afe25f" />
+
+
 ## 🌟 Features
 
 - **Children-friendly UI** with soft pastel colors and playful design
