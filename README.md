@@ -35,7 +35,7 @@ uvicorn main:app --reload
 ```
 
 ### 4. Open Your Browser
-Visit `http://localhost:8000` to see your PedagoPlay application!
+Visit `http://localhost:8888` to see your PedagoPlay application!
 
 ## 📁 Project Structure
 
