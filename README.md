@@ -43,10 +43,8 @@ Visit `http://localhost:8000` to see your PedagoPlay application!
 PedagoPlay/
 ├── main.py              # FastAPI application
 ├── pedagoplay.py        # Core activity generation logic
-├── openrouter.py        # OpenRouter API integration
 ├── requirements.txt     # Python dependencies
-├── templates/
-│   └── index.html       # Main web page template
+├── index.html           # Main web page template
 ├── static/
 │   ├── style.css        # Beautiful pastel styling
 │   └── script.js        # Interactive JavaScript
@@ -86,7 +84,7 @@ The application uses:
 
 ## 📝 Notes
 
-- Make sure your OpenRouter API key is properly configured
+- Make sure your OpenRouter API key is properly configured. You can get one from here: [OpenRouter API Key](https://openrouter.ai/docs/api-reference/authentication)
 - The application is designed to be safe and appropriate for children
 - All activity suggestions are filtered for child safety
 
